@@ -36,10 +36,10 @@ function create() {
   // console.log(self.ship);
   this.input.on('pointermove', function (pointer)
   {
-      console.log(pointer);
+      // console.log(pointer);
       cursor.setVisible(false).setPosition(pointer.x, pointer.y);
       if (typeof self.ship != "undefined") {
-        this.physics.moveToObject(self.ship, pointer, 240);
+        this.physics.moveTo(self.ship, pointer.x, pointer.y, 240);
       }
       
 
@@ -70,15 +70,17 @@ function create() {
     });
   });
   this.socket.on('newPlayer', function (playerInfo) {
-    console.log(playerInfo);
+    // console.log(playerInfo);
     addOtherPlayers(self, playerInfo);
   });
   this.socket.on('playerMoved', function (playerInfo) {
-    console.log(playerInfo);
+    // console.log(playerInfo);
     self.otherPlayers.getChildren().forEach(function (otherPlayer) {
       if (playerInfo.playerId === otherPlayer.playerId) {
         otherPlayer.setRotation(playerInfo.rotation);
-        otherPlayer.setPosition(playerInfo.x, playerInfo.y);
+        self.physics.moveTo(otherPlayer, playerInfo.x, playerInfo.y, 300, 80);
+        // console.log(self.physics);
+        // otherPlayer.setPosition(playerInfo.x, playerInfo.y);
       }
     });
   });
