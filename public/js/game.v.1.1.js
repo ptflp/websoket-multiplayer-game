@@ -1,4 +1,4 @@
-var config = {
+const config = {
   type: Phaser.AUTO,
   parent: 'phaser-example',
   width: 800,
@@ -17,8 +17,10 @@ var config = {
   } 
 };
  
-var game = new Phaser.Game(config);
+const game = new Phaser.Game(config);
  
+var sprite;
+
 function preload() {
   this.load.image('star', 'assets/star_gold.png');
   this.load.image('ship', 'assets/spaceShips_001.png');
@@ -26,7 +28,26 @@ function preload() {
 }
  
 function create() {
+  console.log(this.physics);
+  console.log(Phaser);
+
   this.cursors = this.input.keyboard.createCursorKeys();
+  var cursor = this.add.image(0, 0, 'star').setVisible(false);
+
+  this.input.on('pointermove', function (pointer)
+  {
+      console.log(pointer);
+      cursor.setVisible(false).setPosition(pointer.x, pointer.y);
+
+      this.physics.moveToObject(self.ship, pointer, 240);
+
+      // Phaser.Utils.Array.Each(
+      //     blocks.getChildren(),
+      //     this.physics.moveToObject,
+      //     this.physics,
+      //     pointer, 120);
+  }, this);
+
   var self = this;
   this.socket = io();
   this.socket.on('starLocation', function (starLocation) {
