@@ -39,9 +39,11 @@ function create() {
     });
   });
   this.socket.on('newPlayer', function (playerInfo) {
+    console.log(playerInfo);
     addOtherPlayers(self, playerInfo);
   });
   this.socket.on('playerMoved', function (playerInfo) {
+    console.log(playerInfo);
     self.otherPlayers.getChildren().forEach(function (otherPlayer) {
       if (playerInfo.playerId === otherPlayer.playerId) {
         otherPlayer.setRotation(playerInfo.rotation);
@@ -61,7 +63,6 @@ function create() {
  
 function update() {
   if (this.ship) {
-    console.log(this.ship);
     // emit player movement
     var x = this.ship.x;
     var y = this.ship.y;
@@ -92,6 +93,7 @@ function update() {
     }
   
     this.physics.world.wrap(this.ship, 5);
+    // console.log(this.playerInfo.team);
   }
 }
 
