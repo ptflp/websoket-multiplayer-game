@@ -23,6 +23,7 @@ function preload() {}
  
 function create() {
   this.socket = io();
+  console.log(this.socket);
 }
  
 function update() {}
