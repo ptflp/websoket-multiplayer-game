@@ -33,13 +33,15 @@ function create() {
 
   this.cursors = this.input.keyboard.createCursorKeys();
   var cursor = this.add.image(0, 0, 'star').setVisible(false);
-
+  // console.log(self.ship);
   this.input.on('pointermove', function (pointer)
   {
       console.log(pointer);
       cursor.setVisible(false).setPosition(pointer.x, pointer.y);
-
-      this.physics.moveToObject(self.ship, pointer, 240);
+      if (typeof self.ship != "undefined") {
+        this.physics.moveToObject(self.ship, pointer, 240);
+      }
+      
 
       // Phaser.Utils.Array.Each(
       //     blocks.getChildren(),
