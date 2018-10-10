@@ -61,6 +61,7 @@ function create() {
  
 function update() {
   if (this.ship) {
+    console.log(this.ship);
     // emit player movement
     var x = this.ship.x;
     var y = this.ship.y;
