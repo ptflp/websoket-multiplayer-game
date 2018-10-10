@@ -1,10 +1,11 @@
 const cool = require('cool-ascii-faces')
-const express = require('express')
-const path = require('path')const { Pool } = require('pg');
+const path = require('path')
+const { Pool } = require('pg')
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
-});
+})
+const express = require('express')
 const PORT = process.env.PORT || 5000
 
 express()
