@@ -5,4 +5,4 @@ build:
     - go
 
 run:
-  web: websocket-multiplayer-game
+  web: websoket-multiplayer-game
